@@ -1,6 +1,5 @@
 import sys
 import re
-import subprocess
 
 
 def main():
@@ -8,14 +7,28 @@ def main():
     #print("sending output to next command")
     #args = "".join(args)
 
-    remote_string = "dependabot"
+    print("Starting python.")
+
+    remote_string = "remotes/origin/dependabot"
     newArgs = ["Empty"]
     for pullRequest in args:
         if re.search(remote_string, pullRequest) != None:
+            print( str(len(newArgs)) + ". " + "".join(pullRequest[15:]))
             newArgs.append(pullRequest[15:])
+            
     #sys.stdout.write("echo 'Hello World'")
-    sys.stdout.write("".join(newArgs[-1]))
-    sys.exit(0)
+    if len(newArgs) > 1:
+        print("Please enter the number of the branch you wish to merge, or 0 if you wish to cancel the operation.")
+        choice = input()
+        choice = int(choice)
+        
+        if choice > 0:
+            sys.stdout.write("".join(newArgs[choice]))
+            sys.exit(0)
+        else:
+            print( "Operation cancelled, goodbye.")
+            sys.exit(0)
+    
 
 
 main()
