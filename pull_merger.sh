@@ -1,6 +1,7 @@
 #!/bin/bash
 
 git fetch origin
+
 URL=$(python pull_merger.py $(git branch -a))
 
 echo $URL
@@ -8,7 +9,8 @@ if [ $URL -eq "Empty" ]
 then
     exit
 fi
-    
+
+ 
 
 ORIGIN="origin/"
 echo $URL
