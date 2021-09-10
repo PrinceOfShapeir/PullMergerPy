@@ -23,17 +23,27 @@ done
 
 if [[ "$count" -gt 0 ]]
 then
-    echo "contents of urls array: $URLS"
+    #echo "contents of urls array: $URLS"
     echo "Please type the number of the branch you wish to merge."
     read branchNumber
     URL=${URLS[branchNumber-1]}
     echo "You have selected $URL"
     git checkout -b $URL $ORIGIN$URL
-    git merge main
+    echo "Is your default branch labeleld 'main' or 'master?' If it is 'main' simply hit enter. Otherwise type 1, to enable backwards compatibility with legacy syntax."
+    DEFAULT="main"
+    read defaultAlias
+        if [ $defaultAlias -eq 1 ]
+        then
+            DEFAULT="master"
+            echo "Default master selected."
+        else
+            echo "Default main selected."
+        fi
+    git merge $DEFAULT
     
     #This is where testing prompt goes
-    echo "You have merged into the main branch locally. Please open a separate command prompt and test before proceeding."
-    echo "Have you tested the changes? Proceed to upload to main branch? Please type 1 for yes and 0 for no."
+    echo "You have merged into the $DEFAULT branch locally. Please open a separate command prompt and test before proceeding."
+    echo "Have you tested the changes? Proceed to upload to $DEFAULT branch? Please type 1 for yes and 0 for no."
     read userInput
     #If tests fail, run git reset --merge
 
@@ -43,12 +53,12 @@ then
         echo "Merge reset"
         git branch -d $URL
     else
-        git checkout main
+        git checkout $DEFAULT
         git merge --no-ff $URL
-        git push origin main
+        git push origin $DEFAULT
         echo "We should have uploaded ${URL} to github."
         echo "We probably should have tested it first."
-        git checkout main
+        git checkout $DEFAULT
         git branch -D $URL
     fi
 else 

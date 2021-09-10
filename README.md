@@ -16,6 +16,8 @@ If you screw things up the following commands are useful:
 * `git reset --merge`, if something crashes during the operation.  
 * `git checkout main` or `git checkout master` depending on your repo.  
 * `git fetch`.  
-* `git remote prune origin`, followed by `git branch -d (Insert Branch Name Here without parentheses)`, if stale branches are still stuck in local.  
+* `git remote prune origin`, followed by `git branch -d (Insert Branch Name Here without parentheses)`, if stale branches are still stuck in local.
 
-By using this script, agree to add "pull_merger.sh" to your .gitignore file. 
+Generally the script does its own cleanup, so you shouldn't really need to use the above commands. 
+
+Script is available for testing purposes only. By using this script, agree to add "pull_merger.sh" to your .gitignore file. 
