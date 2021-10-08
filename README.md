@@ -18,6 +18,6 @@ If you screw things up the following commands are useful:
 * `git fetch`.  
 * `git remote prune origin`, followed by `git branch -d (Insert Branch Name Here without parentheses)`, if stale branches are still stuck in local.
 
-Generally the script does its own cleanup, so you shouldn't really need to use the above commands. 
+Generally, the script does its own cleanup, so you shouldn't really need to use the above commands. 
 
 Script is available for testing purposes only. By using this script, agree to add "pull_merger.sh" to your .gitignore file. 

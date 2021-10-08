@@ -32,7 +32,7 @@ then
     echo "Is your default branch labeleld 'main' or 'master?' If it is 'main' simply hit enter. Otherwise type 1, to enable backwards compatibility with legacy syntax."
     DEFAULT="main"
     read defaultAlias
-        if [ $defaultAlias -eq 1 ]
+        if [[ $defaultAlias -eq 1 ]]
         then
             DEFAULT="master"
             echo "Default master selected."
